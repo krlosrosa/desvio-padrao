@@ -185,7 +185,6 @@ export const formatarMensagemTelegram = (
     `Risco alvo (carteira): R$ ${fmtMoney(riscoFinanceiro)}`,
     `Risco por unidade:     R$ ${fmtMoney(q.riscoPorUnidade)}`,
     `Risco real:            R$ ${fmtMoney(q.riscoReal)}`,
-    `  (= ${fmtInt(q.quantidade)} × ${fmtMoney(q.riscoPorUnidade)})`,
     `(Cálculo bruto: ${fmtInt(Math.round(q.quantidadeBruta))} unidades)`,
   ];
 
