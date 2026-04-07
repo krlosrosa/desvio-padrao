@@ -176,24 +176,21 @@ export const formatarMensagemTelegram = (
   const acaoEmoji = isCompra ? "📈" : "📉";
 
   const linhas = [
-    `${acaoEmoji} *SINAL DE ${tipoLabel}*`,
-    `${tipoEmoji} Ativo: *${signal.ativo}*`,
+    `${acaoEmoji} <b>${tipoLabel} ${fmtInt(q.quantidade)} ${signal.ativo}</b> ${tipoEmoji}`,
     "━━━━━━━━━━━━━━━",
     "",
-    `🎯 *O QUE FAZER:* ${tipoLabel} *${fmtInt(q.quantidade)} ${signal.ativo}*`,
-    "",
-    "📋 *Parâmetros da operação:*",
+    "📋 <b>Parâmetros da operação:</b>",
     `   🔵 Entrada:  R$ ${fmtMoney(signal.entrada)}`,
     `   🛑 Stop:     R$ ${fmtMoney(signal.stop)}`,
     `   ✅ Alvo:     R$ ${fmtMoney(signal.alvo)}`,
     "",
     "━━━━━━━━━━━━━━━",
-    "📊 *Gestão de risco:*",
-    `   💼 Qtd. operação:     ${fmtInt(q.quantidade)} unidades`,
-    `   💰 Risco financeiro:  R$ ${fmtMoney(riscoFinanceiro)}`,
-    `   📏 Risco/unidade:     R$ ${fmtMoney(q.riscoPorUnidade)}`,
-    `   ⚠️  Risco real:        R$ ${fmtMoney(q.riscoReal)}`,
-    `   🔢 Qtd. bruta:        ${fmtInt(Math.round(q.quantidadeBruta))} unidades`,
+    "📊 <b>Gestão de risco:</b>",
+    `   💼 Qtd. operação:    ${fmtInt(q.quantidade)} unidades`,
+    `   💰 Risco financeiro: R$ ${fmtMoney(riscoFinanceiro)}`,
+    `   📏 Risco/unidade:    R$ ${fmtMoney(q.riscoPorUnidade)}`,
+    `   ⚠️  Risco real:       R$ ${fmtMoney(q.riscoReal)}`,
+    `   🔢 Qtd. bruta:       ${fmtInt(Math.round(q.quantidadeBruta))} unidades`,
   ];
 
   return linhas.join("\n");

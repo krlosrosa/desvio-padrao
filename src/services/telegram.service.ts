@@ -20,7 +20,7 @@ export const sendMessage = async ({
   try {
     const { data } = await axios.post<TelegramSendMessageResponse>(
       url,
-      { chat_id: chatId, text },
+      { chat_id: chatId, text, parse_mode: "HTML" },
       { timeout: 15_000 },
     );
 
