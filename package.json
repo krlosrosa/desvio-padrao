@@ -1,0 +1,33 @@
+{
+  "name": "notifica-telegram",
+  "version": "1.0.0",
+  "description": "API REST para enviar notificações ao Telegram",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "telegram",
+    "express",
+    "notifications"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.14.0",
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.5.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}

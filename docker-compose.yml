@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  notificatelegram:
+    build:
+      context: .
+    image: notifica-telegram:latest
+    container_name: notifica-telegram
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - PORT=${PORT:-3000}
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.notificatelegram.rule=Host(`${NOTIFICA_TELEGRAM_HOST}`)"
+      - "traefik.http.routers.notificatelegram.service=notificatelegram"
+      - "traefik.http.routers.notificatelegram.tls.certresolver=letsencrypt"
+      - "traefik.http.services.notificatelegram.loadbalancer.server.port=${PORT:-3000}"
+
+networks:
+  proxy:
+    external: true
