@@ -170,22 +170,30 @@ export const formatarMensagemTelegram = (
   q: QuantityResult & { ok: true },
   riscoFinanceiro: number,
 ): string => {
-  const tipoLabel = signal.tipo === "COMPRA" ? "COMPRA" : "VENDA";
-  const emoji = signal.tipo === "COMPRA" ? "📈" : "📉";
+  const isCompra = signal.tipo === "COMPRA";
+  const tipoEmoji = isCompra ? "🟢" : "🔴";
+  const tipoLabel = isCompra ? "COMPRA" : "VENDA";
+  const acaoEmoji = isCompra ? "📈" : "📉";
 
   const linhas = [
-    `${emoji} Sinal ${tipoLabel} · ${signal.ativo}`,
-    "──────────────────",
-    `Entrada:  R$ ${fmtMoney(signal.entrada)}`,
-    `Stop:     R$ ${fmtMoney(signal.stop)}`,
-    `Alvo:     R$ ${fmtMoney(signal.alvo)}`,
+    `${acaoEmoji} *SINAL DE ${tipoLabel}*`,
+    `${tipoEmoji} Ativo: *${signal.ativo}*`,
+    "━━━━━━━━━━━━━━━━━━━━",
     "",
-    `Quantidade: ${fmtInt(q.quantidade)}`,
+    `🎯 *O QUE FAZER:* ${tipoLabel} *${fmtInt(q.quantidade)} ${signal.ativo}*`,
     "",
-    `Risco alvo (carteira): R$ ${fmtMoney(riscoFinanceiro)}`,
-    `Risco por unidade:     R$ ${fmtMoney(q.riscoPorUnidade)}`,
-    `Risco real:            R$ ${fmtMoney(q.riscoReal)}`,
-    `(Cálculo bruto: ${fmtInt(Math.round(q.quantidadeBruta))} unidades)`,
+    "📋 *Parâmetros da operação:*",
+    `   🔵 Entrada:  R$ ${fmtMoney(signal.entrada)}`,
+    `   🛑 Stop:     R$ ${fmtMoney(signal.stop)}`,
+    `   ✅ Alvo:     R$ ${fmtMoney(signal.alvo)}`,
+    "",
+    "━━━━━━━━━━━━━━━━━━━━",
+    "📊 *Gestão de risco:*",
+    `   💼 Qtd. operação:     ${fmtInt(q.quantidade)} unidades`,
+    `   💰 Risco financeiro:  R$ ${fmtMoney(riscoFinanceiro)}`,
+    `   📏 Risco/unidade:     R$ ${fmtMoney(q.riscoPorUnidade)}`,
+    `   ⚠️  Risco real:        R$ ${fmtMoney(q.riscoReal)}`,
+    `   🔢 Qtd. bruta:        ${fmtInt(Math.round(q.quantidadeBruta))} unidades`,
   ];
 
   return linhas.join("\n");
