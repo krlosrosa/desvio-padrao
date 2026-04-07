@@ -11,6 +11,7 @@ services:
       - NODE_ENV=production
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
       - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - RISCO_FINANCEIRO=${RISCO_FINANCEIRO}
       - PORT=${PORT:-3000}
     networks:
       - proxy
