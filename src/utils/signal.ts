@@ -181,6 +181,7 @@ export const formatarMensagemTelegram = (
     "━━━━━━━━━━━━━━━",
     "",
     "📋 <b>Parâmetros da operação:</b>",
+    `   💼 Qtd:    ${fmtInt(q.quantidade)}`,
     `   🔵 Entrada:  R$ ${fmtMoney(signal.entrada)}`,
     `   🛑 Stop:     R$ ${fmtMoney(signal.stop)}`,
     `   ✅ Alvo:     R$ ${fmtMoney(signal.alvo)}`,
