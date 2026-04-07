@@ -4,7 +4,10 @@ import { notifyRouter } from "./routes/notify.route.js";
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ limit: "512kb" }));
+app.use(express.urlencoded({ extended: true, limit: "512kb" }));
+app.use(express.text({ type: ["text/*", "application/xml"], limit: "512kb" }));
+app.use(express.raw({ type: "application/octet-stream", limit: "512kb" }));
 
 app.use(notifyRouter);
 
