@@ -176,7 +176,7 @@ export const formatarMensagemTelegram = (
   const acaoEmoji = isCompra ? "📈" : "📉";
 
   const linhas = [
-    `${acaoEmoji} <b>${tipoLabel}`,
+    `${acaoEmoji} <b>${tipoLabel}</b>`,
     `${tipoEmoji} <b>Ativo: ${signal.ativo}</b>`,
     "━━━━━━━━━━━━━━━",
     "",
