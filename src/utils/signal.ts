@@ -178,7 +178,7 @@ export const formatarMensagemTelegram = (
   const linhas = [
     `${acaoEmoji} *SINAL DE ${tipoLabel}*`,
     `${tipoEmoji} Ativo: *${signal.ativo}*`,
-    "━━━━━━━━━━━━━━━━━━━━",
+    "━━━━━━━━━━━━━━━",
     "",
     `🎯 *O QUE FAZER:* ${tipoLabel} *${fmtInt(q.quantidade)} ${signal.ativo}*`,
     "",
@@ -187,7 +187,7 @@ export const formatarMensagemTelegram = (
     `   🛑 Stop:     R$ ${fmtMoney(signal.stop)}`,
     `   ✅ Alvo:     R$ ${fmtMoney(signal.alvo)}`,
     "",
-    "━━━━━━━━━━━━━━━━━━━━",
+    "━━━━━━━━━━━━━━━",
     "📊 *Gestão de risco:*",
     `   💼 Qtd. operação:     ${fmtInt(q.quantidade)} unidades`,
     `   💰 Risco financeiro:  R$ ${fmtMoney(riscoFinanceiro)}`,
