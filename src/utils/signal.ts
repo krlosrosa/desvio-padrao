@@ -102,7 +102,14 @@ export const riscoPorUnidade = (signal: ParsedSignal): number | null => {
 };
 
 export type QuantityResult =
-  | { ok: true; quantidade: number; riscoPorUnidade: number; quantidadeBruta: number }
+  | {
+      ok: true;
+      quantidade: number;
+      riscoPorUnidade: number;
+      quantidadeBruta: number;
+      /** quantidade × |entrada − stop| em R$ (risco efetivo com o lote arredondado). */
+      riscoReal: number;
+    }
   | { ok: false; error: string };
 
 /**
@@ -138,7 +145,15 @@ export const calcularQuantidade = (
     };
   }
 
-  return { ok: true, quantidade, riscoPorUnidade: risco, quantidadeBruta };
+  const riscoReal = quantidade * risco;
+
+  return {
+    ok: true,
+    quantidade,
+    riscoPorUnidade: risco,
+    quantidadeBruta,
+    riscoReal,
+  };
 };
 
 const fmtMoney = (n: number) =>
@@ -169,6 +184,8 @@ export const formatarMensagemTelegram = (
     "",
     `Risco alvo (carteira): R$ ${fmtMoney(riscoFinanceiro)}`,
     `Risco por unidade:     R$ ${fmtMoney(q.riscoPorUnidade)}`,
+    `Risco real:            R$ ${fmtMoney(q.riscoReal)}`,
+    `  (= ${fmtInt(q.quantidade)} × ${fmtMoney(q.riscoPorUnidade)})`,
     `(Cálculo bruto: ${fmtInt(Math.round(q.quantidadeBruta))} unidades)`,
   ];
 

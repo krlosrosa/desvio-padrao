@@ -48,6 +48,7 @@ notifyRouter.post("/notify", async (req, res, next) => {
       ok: true,
       quantidade: q.quantidade,
       riscoPorUnidade: q.riscoPorUnidade,
+      riscoReal: q.riscoReal,
     });
   } catch (err) {
     next(err);
